@@ -5,7 +5,7 @@ public class AprendizSith extends Nivel {
 	
 	
 	public AprendizSith(String nome, int dominioDaForca, boolean saberMontarSabre) {
-		super("Aprendiz", 2);
+		super("Aprendiz", 2, 2);
 		this.saberMontarSabre = saberMontarSabre;
 	}
 	public boolean isSaberMontarSabre() {

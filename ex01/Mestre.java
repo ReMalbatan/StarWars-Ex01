@@ -4,7 +4,7 @@ public class Mestre extends Nivel {
 	private int campoVidencia;
 	
 	public Mestre(int campoVidencia) {
-		super("Mestre", 4);
+		super("Mestre", 4, 4);
 		this.campoVidencia = campoVidencia;
 		
 	}

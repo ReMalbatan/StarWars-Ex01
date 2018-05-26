@@ -5,6 +5,7 @@ public class Planeta {
 	private double diametro;
 	private String cor;
 	private String capital;
+	
 	public String getNome() {
 		return nome;
 	}
@@ -29,7 +30,4 @@ public class Planeta {
 	public void setCapital(String capital) {
 		this.capital = capital;
 	}
-	
-	
-	
 }

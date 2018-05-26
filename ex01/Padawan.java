@@ -5,7 +5,7 @@ public class Padawan extends Nivel{
 	private boolean tranca;
 	
 	public Padawan(String nome, int dominioDaForca, Jedi mestreTreinador, boolean tranca) {
-		super("Padawan", 2);
+		super("Padawan", 2, 2);
 		this.mestreTreinador = mestreTreinador;
 		this.tranca = tranca;
 	}

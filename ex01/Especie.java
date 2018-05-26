@@ -1,40 +1,28 @@
 package ex01;
 
-public abstract class Especie {
+public class Especie {
 	private String nomeEspecie;
-	private String corDePele;
-	private double minAltura;
-	private double maxAltura;
+	private double altura;
 	
-	public Especie(String nomeEspecie, String corDePele, double minAltura, double maxAltura) {
+	public Especie(String nomeEspecie, double altura) {
 		super();
 		this.nomeEspecie = nomeEspecie;
-		this.corDePele = corDePele;
-		this.minAltura = minAltura;
-		this.maxAltura = maxAltura;
+		this.altura = altura;
 	}
+	
 	public String getNomeEspecie() {
 		return nomeEspecie;
 	}
+	
 	public void setNomeEspecie(String nomeEspecie) {
 		this.nomeEspecie = nomeEspecie;
 	}
-	public String getCorDePele() {
-		return corDePele;
+	
+	public double getAltura() {
+		return altura;
 	}
-	public void setCorDePele(String corDePele) {
-		this.corDePele = corDePele;
-	}
-	public double getMinAltura() {
-		return minAltura;
-	}
-	public void setMinAltura(double minAltura) {
-		this.minAltura = minAltura;
-	}
-	public double getMaxAltura() {
-		return maxAltura;
-	}
-	public void setMaxAltura(double maxAltura) {
-		this.maxAltura = maxAltura;
+	
+	public void setAltura(double altura) {
+		this.altura = altura;
 	}
 }

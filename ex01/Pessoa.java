@@ -6,9 +6,14 @@ public class Pessoa {
 	private Especie esp;
 	private String dataNascimento;
 	private Planeta planetaNatal;
+	private int vida = 100;
 
-	public Pessoa(String genero, Especie esp, String dataNascimento) {
+	public Pessoa() {
+		
+	}
+	public Pessoa(String nome, String genero, Especie esp, String dataNascimento) {
 		super();
+		this.nome = nome;
 		this.genero = genero;
 		this.esp = esp;
 		this.dataNascimento = dataNascimento;
@@ -48,6 +53,13 @@ public class Pessoa {
 	public void setPlanetaNatal(Planeta planetaNatal) {
 		this.planetaNatal = planetaNatal;
 	}
-
+	
+	public int getVida() {
+		return vida;
+	}
+	
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
 	
 }
