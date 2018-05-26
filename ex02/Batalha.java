@@ -20,27 +20,27 @@ public class Batalha {
 			return 3;
 	}
 	
-	public static Jedi montaJedi(String nome, String nomeEspecie, String genero, double altura, String nascimento) {
-		Mestre mestre = new Mestre(18000);
+	public static Jedi montaJedi(String nome, String nomeEspecie, String genero, double altura, String nascimento, int dominioForca, int dominioSabre) {
+		Mestre mestre = new Mestre(18000, dominioForca, dominioSabre);
 		Especie espJedi = new Especie(nomeEspecie, altura);
 		Poder[] poderJedi = new Poder[4];
 		poderJedi[0] = new Poder("Super Soco (força)", 4, 2);
 		poderJedi[1] = new Poder("Corte Fatal (sabre)", 16, 1);
 		poderJedi[2] = new Poder("Sangramento (força)", 8, 2);
-		poderJedi[3] = new Poder("Instinto Sabre Supremo (sabre)", 32, 1);
+		poderJedi[3] = new Poder("Instinto Sabre Superior (sabre)", 32, 1);
 		Jedi jedi = new Jedi(nome, genero, espJedi, nascimento, mestre, poderJedi);
 		
 		return jedi;
 	}
 	
-	public static Sith montaSith(String antigoNome, String novoNome, String nomeEspecie, String genero, double altura, String nascimento) {
-		Lorde lorde = new Lorde(15000);
+	public static Sith montaSith(String antigoNome, String novoNome, String nomeEspecie, String genero, double altura, String nascimento, int dominioForca, int dominioSabre) {
+		Lorde lorde = new Lorde(15000, dominioForca, dominioSabre);
 		Especie espSith = new Especie(nomeEspecie, altura);
 		Poder[] poderSith = new Poder[4];
-		poderSith[0] = new Poder("Palma Maligna (força)", 8, 2);
-		poderSith[1] = new Poder("Tremor da Escuridao (força)", 10, 2);
-		poderSith[2] = new Poder("Corte da Escuridao (sabre)", 20, 1);
-		poderSith[3] = new Poder("Instinto Maligno (sabre)", 22, 1);
+		poderSith[0] = new Poder("Palma Malígna (força)", 8, 2);
+		poderSith[1] = new Poder("Tremor da Escuridão (força)", 10, 2);
+		poderSith[2] = new Poder("Corte da Escuridão (sabre)", 20, 1);
+		poderSith[3] = new Poder("Instinto Malígno (sabre)", 22, 1);
 		Sith sith = new Sith(antigoNome, genero, espSith, nascimento, novoNome, lorde, poderSith);
 		
 		return sith;
@@ -48,14 +48,14 @@ public class Batalha {
 	
 	public static void luta(Jedi jedi, Sith sith) {
 		boolean jediAtaca, sithAtaca;
-		int hab, acao;
+		int hab, acao, domJedi, domSith;
 		
 		Poder[] poderJedi = jedi.getPoderes();
 		Poder[] poderSith = sith.getPoderes();
 		jediAtaca = sithAtaca = false;
 		
 		
-		System.out.println("Star Wars Episodio 1010: Guerra Binaria");
+		System.out.println("Star Wars Episódio 1010: Guerra Binária");
 		System.out.println();
 		System.out.println("Mestre Jedi " + jedi.getNome() + " Vs " + "Sith " + sith.getNovoNome());
 		System.out.println();
@@ -99,11 +99,27 @@ public class Batalha {
 							sith.setVida(0);
 						System.out.println(sith.getNovoNome() + "(" + sith.getVida() + ") leva dano de " + poderJedi[hab].getDano());
 					}
-					else {
+					else if (poderJedi[hab].getPrioridade() < poderSith[hab].getPrioridade()){
 						jedi.setVida(jedi.getVida() - poderSith[hab].getDano()); //Jedi sofre o dano do contra golpe do Sith
 						if (jedi.getVida() < 0)
 							jedi.setVida(0);
 						System.out.println(jedi.getNome() + "(" + jedi.getVida() + ") leva dano de " + poderSith[hab].getDano());
+					}
+					else { //se a prioridade de ataque for igual, levara dano quem tirver m
+						domJedi = (jedi.getNvl().getDominioDaForca() + jedi.getNvl().getDominioDoSabre());
+						domSith = (sith.getNvl().getDominioDaForca() + sith.getNvl().getDominioDoSabre());
+						if (domJedi > domSith) { //Sith leva o dobro do dano
+							sith.setVida(sith.getVida() - (5 + poderJedi[hab].getDano())); //Sith sofre o dano do golpe do Jedi +5
+							if (sith.getVida() < 0)
+								sith.setVida(0);
+							System.out.println(sith.getNovoNome() + "(" + sith.getVida() + ") leva dano de " + poderJedi[hab].getDano() + " + 5");
+						}
+						else if (domJedi < domSith) {
+							jedi.setVida(jedi.getVida() - (5 + poderSith[hab].getDano())); //Jedi sofre o dano do contra golpe do Sith +5
+							if (jedi.getVida() < 0)
+								jedi.setVida(0);
+							System.out.println(jedi.getNome() + "(" + jedi.getVida() + ") leva dano de " + poderSith[hab].getDano() + " + 5");
+						}
 					}
 				}
 			}
@@ -128,12 +144,28 @@ public class Batalha {
 							jedi.setVida(0);
 						System.out.println(jedi.getNome() + "(" + jedi.getVida() + ") leva dano de " + poderSith[hab].getDano());
 					}
-					else {
+					else if (poderSith[hab].getPrioridade() < poderJedi[hab].getPrioridade()) {
 						sith.setVida(sith.getVida() - poderJedi[hab].getDano()); //Sith sofre o dano do contra golpe do Jedi
 						if (sith.getVida() < 0)
 							sith.setVida(0);
 						System.out.println(sith.getNovoNome() + "(" + sith.getVida() + ") leva dano de " + poderJedi[hab].getDano());
 					}	
+					else { //se a prioridade de ataque for igual, levara dano quem tirver m
+						domJedi = (jedi.getNvl().getDominioDaForca() + jedi.getNvl().getDominioDoSabre());
+						domSith = (sith.getNvl().getDominioDaForca() + sith.getNvl().getDominioDoSabre());
+						if (domJedi > domSith) { //Sith leva o dobro do dano
+							sith.setVida(sith.getVida() - (5 + poderJedi[hab].getDano())); //Sith sofre o dano do golpe do Jedi +5
+							if (sith.getVida() < 0)
+								sith.setVida(0);
+							System.out.println(sith.getNovoNome() + "(" + sith.getVida() + ") leva dano de " + poderJedi[hab].getDano() + " + 5");
+						}
+						else if (domJedi < domSith) {
+							jedi.setVida(jedi.getVida() - (5 + poderSith[hab].getDano())); //Jedi sofre o dano do contra golpe do Sith +5
+							if (jedi.getVida() < 0)
+								jedi.setVida(0);
+							System.out.println(jedi.getNome() + "(" + jedi.getVida() + ") leva dano de " + poderSith[hab].getDano() + " + 5");
+						}
+					}
 				}
 			}
 			
@@ -160,8 +192,8 @@ public class Batalha {
 		Sith sith = new Sith();
 		
 
-		jedi = montaJedi("Java Skywalker", "Humano", "Masculino", 1.7, "45 ABY");
-		sith = montaSith("C Dookan", "Lord Python", "Humano", "Masculino", 1.85, "71 ABY");
+		jedi = montaJedi("Java Skywalker", "Humano", "Masculino", 1.7, "45 ABY", 10, 10);
+		sith = montaSith("C Dookan", "Lord Python", "Humano", "Masculino", 1.85, "71 ABY", 10, 10);
 		
 		luta(jedi, sith);
 

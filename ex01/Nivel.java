@@ -8,8 +8,8 @@ public abstract class Nivel {
 	public Nivel(String nome, int dominioDaForca, int dominioDoSabre) {
 		super();
 		this.nome = nome;
-		this.dominioDaForca = dominioDaForca;
-		this.dominioDoSabre = dominioDoSabre;
+		this.dominioDaForca = dominioDaForca; //1 mais fraco e 4 mais forte
+		this.dominioDoSabre = dominioDoSabre; // 1 mais fraco e 4 mais forte
 	}
 	public String getNome() {
 		return nome;

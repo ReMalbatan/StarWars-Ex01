@@ -3,8 +3,8 @@ package ex01;
 public class Lorde extends Nivel{
 	private int campoDeVidencia;
 
-	public Lorde(int campoDeVidencia) {
-		super("Lorde", 4, 4);
+	public Lorde(int campoDeVidencia, int dominioForca, int dominioSabre) {
+		super("Lorde", dominioForca, dominioSabre); 
 		this.campoDeVidencia = campoDeVidencia;
 	}
 

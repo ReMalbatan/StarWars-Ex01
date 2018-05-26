@@ -3,8 +3,8 @@ package ex01;
 public class Mestre extends Nivel {
 	private int campoVidencia;
 	
-	public Mestre(int campoVidencia) {
-		super("Mestre", 4, 4);
+	public Mestre(int campoVidencia, int dominioForca, int dominioSabre) {
+		super("Mestre", dominioForca, dominioSabre);
 		this.campoVidencia = campoVidencia;
 		
 	}
