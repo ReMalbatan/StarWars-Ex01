@@ -186,17 +186,4 @@ public class Batalha {
 			
 		} //fim do while
 	} //fim da classe Batalha
-	
-	public static void main(String[] args) {
-		Jedi jedi = new Jedi();
-		Sith sith = new Sith();
-		
-
-		jedi = montaJedi("Java Skywalker", "Humano", "Masculino", 1.7, "45 ABY", 10, 10);
-		sith = montaSith("C Dookan", "Lord Python", "Humano", "Masculino", 1.85, "71 ABY", 10, 10);
-		
-		luta(jedi, sith);
-
-			
-	}
 }
